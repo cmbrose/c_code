@@ -34,6 +34,7 @@ struct
     std::vector<int> colors;
     bool colors_from_corners;
     const char *shape_mode;
+    const char *shape_image;
 } opts;
 
 struct
@@ -70,6 +71,10 @@ int main(int argc, char* argv[])
     if (files.input_file != NULL)
     {
         grid = load_backup(files.input_file, &opts.width, &opts.height, maxDist);
+    }
+    else if (opts.shape_image != NULL)
+    {
+        grid = make_maze_in_image(opts.shape_image, opts.variance, maxDist, opts.wrap_maze, &(opts.width), &(opts.height));
     }
     else
     {
@@ -343,6 +348,10 @@ void parse_args(int argc, char* argv[])
         else if (strcmp(argv[i], "-S") == 0)
         {
             opts.shape_mode = argv[++i];
+        }
+        else if (strcmp(argv[i], "-I") == 0)
+        {
+            opts.shape_image = argv[++i];
         }
         else if (strcmp(argv[i], "-b") == 0)
         {

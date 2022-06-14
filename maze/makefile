@@ -6,7 +6,7 @@ APP = bg_maker
 SDIR=src
 ODIR=bin
 
-_SRC = prim_maze shapes progress debug
+_SRC = prim_maze shapes ppm progress debug
 SRC = $(patsubst %,$(SDIR)/%.h,$(_SRC))
 OBJ = $(patsubst %,$(ODIR)/%.o,$(_SRC))
 
